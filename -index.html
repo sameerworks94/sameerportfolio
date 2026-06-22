@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Sameer | E-Learning Designer & Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-dark: #0a1628;
+            --secondary-dark: #1e3a5f;
+            --accent-cyan: #00d9ff;
+            --accent-light: #00f5ff;
+            --text-white: #ffffff;
+            --text-gray: #b8c5d6;
+            --gradient-primary: linear-gradient(135deg, #00d9ff 0%, #00f5ff 100%);
+            --gradient-dark: linear-gradient(180deg, #0a1628 0%, #1e3a5f 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--primary-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 5px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name span:first-child {
+            font-size: 12px;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+        }
+
+        .brand-name span:last-child {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .brand-name span:last-child .highlight {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent-cyan);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(rgba(10, 22, 40, 0.7), rgba(10, 22, 40, 0.8)), 
+                        url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 120px 5% 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 217, 255, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(0, 217, 255, 0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .tagline {
+            font-size: 24px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--primary-dark);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-white);
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .hero-contact {
+            display: flex;
+            gap: 30px;
+            padding: 20px 30px;
+            background: rgba(30, 58, 95, 0.6);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-gray);
+        }
+
+        .hero-contact-item i {
+            color: var(--accent-cyan);
+            font-size: 18px;
+        }
+
+        .hero-contact-item a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .hero-contact-item a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .profile-container {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--accent-cyan);
+            object-fit: cover;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            padding: 20px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.5);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .experience-badge .years {
+            font-size: 48px;
+            font-weight: 700;
+            display: block;
+            color: var(--primary-dark);
+        }
+
+        .experience-badge .text {
+            font-size: 14px;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .about {
+            background: var(--gradient-dark);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .stat-card i {
+            font-size: 40px;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+        }
+
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            display: block;
+        }
+
+        .stat-card .label {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .about-content h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .about-content p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .skill-category h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-cyan);
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: var(--text-white);
+        }
+
+        .skill-percent {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        .portfolio {
+            background: var(--gradient-dark);
+        }
+
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--text-white);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--primary-dark);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: rgba(30, 58, 95, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: rgba(10, 22, 40, 0.3);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 217, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .view-project {
+            padding: 12px 30px;
+            background: var(--primary-dark);
+            color: var(--accent-cyan);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .view-project {
+            transform: translateY(0);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .portfolio-content p {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--accent-cyan);
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient-primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            transform: translateX(30px);
+        }
+
+        .timeline-item:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            border: 4px solid var(--primary-dark);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: var(--accent-cyan);
+        }
+
+        .timeline-content .company {
+            font-size: 18px;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .date {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-content ul li {
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-content ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .education {
+            background: var(--gradient-dark);
+        }
+
+        .education-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .education-card i {
+            font-size: 50px;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        .education-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .education-card .institution {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .education-card .year {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .contact-info > p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(30, 58, 95, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-cyan);
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--accent-cyan);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 217, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .contact-item div strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-white);
+        }
+
+        .contact-item div span,
+        .contact-item div a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item div a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .contact-form {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-white);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(10, 22, 40, 0.6);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        footer {
+            background: rgba(10, 22, 40, 0.95);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 58, 95, 0.6);
+            border-radius: 50%;
+            color: var(--text-white);
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-5px);
+            border-color: transparent;
+            color: var(--primary-dark);
+        }
+
+        footer p {
+            color: var(--text-gray);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Popup Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            width: 75%;
+            height: 75%;
+            background: var(--primary-dark);
+            border-radius: 20px;
+            border: 2px solid var(--accent-cyan);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);
+        }
+
+        .modal-header {
+            background: var(--secondary-dark);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-cyan);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--text-white);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            width: 100%;
+            height: calc(100% - 65px);
+            border: none;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 968px) {
+            .modal-container {
+                width: 90%;
+                height: 85%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-contact {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 40px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -10px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-contact {
+                flex-direction: column;
+                gap: 15px;
+                border-radius: 20px;
+            }
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0, 217, 255, 0.2);
+            border-top-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Course Preview</div>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="MS Logo" class="nav-logo">
+            <div class="brand-name">
+                <span>E-LEARNING</span>
+                <span>M.<span class="highlight">SAMEER</span></span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <img src="logo.png" alt="MS Logo" class="hero-logo">
+                <h1>E-LEARNING<br><span class="highlight">M.SAMEER</span></h1>
+                <div class="tagline">LEARNING DESIGNER DEVELOPER</div>
+                <p class="subtitle">
+                    Experienced Storyline Rapid eLearning Developer with over 13+ years in Graphic Design 
+                    and Development for e-Learning. Proficient in diverse modules and graphic design using 
+                    Adobe Creative Suite.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <i class="fas fa-briefcase"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Get In Touch
+                    </a>
+                </div>
+                <div class="hero-contact">
+                    <div class="hero-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919910135949">+91-9910135949</a>
+                    </div>
+                    <div style="color: var(--accent-cyan);">|</div>
+                    <div class="hero-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:sameer007_7@rediffmail.com">sameer007_7@rediffmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <img src="sameer.png" alt="M. Sameer" class="profile-img">
+                </div>
+                <div class="experience-badge">
+                    <span class="years">13+</span>
+                    <span class="text">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>Passionate about creating engaging and interactive learning experiences</p>
+        </div>
+        <div class="about-container">
+            <div class="about-stats">
+                <div class="stat-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <span class="number">500+</span>
+                    <span class="label">Projects Completed</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <span class="number">50+</span>
+                    <span class="label">Happy Clients</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <span class="number">13+</span>
+                    <span class="label">Years Experience</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-code"></i>
+                    <span class="number">15+</span>
+                    <span class="label">Tools Mastered</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Transforming Complex Content into Engaging Learning Experiences</h3>
+                <p>
+                    I'm an experienced eLearning Developer and Designer with over 13 years of expertise in creating 
+                    interactive and engaging digital learning solutions. My passion lies in transforming complex 
+                    subject matter into clear, measurable, and impactful learning experiences.
+                </p>
+                <p>
+                    With proficiency in industry-leading tools like Articulate Storyline, Rise 360, Adobe Creative Suite, 
+                    and various multimedia platforms, I specialize in developing SCORM-compliant courses, gamified 
+                    learning modules, and comprehensive training programs that drive results.
+                </p>
+                <p>
+                    My approach combines instructional design best practices with cutting-edge technology to create 
+                    learning experiences that not only educate but inspire and engage learners at every level.
+                </p>
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="section-title">
+            <h2>Technical Expertise</h2>
+            <p>Mastered tools and technologies for eLearning development</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class="fas fa-laptop-code"></i> eLearning Development</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Articulate Storyline 360</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Articulate Rise 360</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Adobe Captivate</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Lectora</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-palette"></i> Design & Multimedia</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Adobe After Effects</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Adobe Premiere</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Adobe Photoshop</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Flash/Animate CC</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-video"></i> Video & Audio</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Camtasia Studio</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Motion Graphics</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Video Editing</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Audio Production</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-brain"></i> Core Competencies</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Instructional Design</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">UI/UX Design</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Visual Storyboarding</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Project Management</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-container">
+            <div class="section-title">
+                <h2>My Portfolio</h2>
+                <p>Showcasing my best eLearning projects and designs</p>
+            </div>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="storyline">Storyline</button>
+                <button class="filter-btn" data-filter="rise">Rise 360</button>
+                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Games Activity 001 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Games Activity 001', 'https://articulateusercontent.com/review/items/yt-85EbhZ1qY3REh/story.html')">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Games Activity 001</h3>
+                        <p>Interactive game-based learning activity with engaging scenarios</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline 360</span>
+                            <span class="tag">Gamification</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Games Activity 002 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Games Activity 002', 'https://articulateusercontent.com/review/items/e3WXa_aWY_oYvBQq/story.html')">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Games Activity 002</h3>
+                        <p>Interactive game-based learning activity with engaging scenarios</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline 360</span>
+                            <span class="tag">Gamification</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Games Activity 003 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Games Activity 003', 'https://articulateusercontent.com/review/items/FKCzJqRADU88Znqt/story.html')">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Games Activity 003</h3>
+                        <p>Interactive game-based learning activity with engaging scenarios</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline 360</span>
+                            <span class="tag">Gamification</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Games Activity 004 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Games Activity 004', 'https://articulateusercontent.com/review/items/5DHA_JCN1pCMzcAb/story.html')">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Games Activity 004</h3>
+                        <p>Interactive game-based learning activity with engaging scenarios</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline 360</span>
+                            <span class="tag">Gamification</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Games Activity 005 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Games Activity 005', 'https://articulateusercontent.com/review/items/Yml-vvFYVh14t29Z/story.html')">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Games Activity 005</h3>
+                        <p>Interactive game-based learning activity with engaging scenarios</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline 360</span>
+                            <span class="tag">Gamification</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Learning Course 01 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('E-Learning Course 01', 'https://articulateusercontent.com/review/items/GN0oLcFKOVlh7ln3/story.html')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Learning Course 01</h3>
+                        <p>Comprehensive eLearning course with interactive elements</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">SCORM</span>
+                            <span class="tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Learning Course 02 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('E-Learning Course 02', 'https://articulateusercontent.com/review/items/U1nyeLZ5Z1FEr8mi/story.html')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Learning Course 02</h3>
+                        <p>Comprehensive eLearning course with interactive elements</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">SCORM</span>
+                            <span class="tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Learning Course 03 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('E-Learning Course 03', 'https://articulateusercontent.com/review/items/6fzb-uNgEIpeDCg0/story.html')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Learning Course 03</h3>
+                        <p>Comprehensive eLearning course with interactive elements</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">SCORM</span>
+                            <span class="tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Learning Course 04 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('E-Learning Course 04', 'https://articulateusercontent.com/review/items/GmHOr_bzreVspz3W/story.html')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Learning Course 04</h3>
+                        <p>Comprehensive eLearning course with interactive elements</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">SCORM</span>
+                            <span class="tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Activity 01 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Slide Activity 01', 'https://articulateusercontent.com/review/items/VY3e9Qa5zMtofIAy/story.html')">
+                        <i class="fas fa-presentation-screen"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Slide Activity 01</h3>
+                        <p>Interactive slide-based learning activity</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">Interactive</span>
+                            <span class="tag">Slides</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video & Activity 001 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Video & Activity 001', 'https://articulateusercontent.com/review/items/qOajDdKqg43Py7Kb/story.html')">
+                        <i class="fas fa-video"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Video & Activity 001</h3>
+                        <p>Video-based learning with interactive activities</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">Video</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video & Activity 002 -->
+                <div class="portfolio-item" data-category="storyline">
+                    <div class="portfolio-image" onclick="openModal('Video & Activity 002', 'https://articulateusercontent.com/review/items/noG6BzNfSZxRwSBO/story.html')">
+                        <i class="fas fa-video"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Video & Activity 002</h3>
+                        <p>Video-based learning with interactive activities</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Storyline</span>
+                            <span class="tag">Video</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rise Sample 01 -->
+                <div class="portfolio-item" data-category="rise">
+                    <div class="portfolio-image" onclick="openModal('Rise Sample 01', 'https://articulateusercontent.com/review/uploads/qsAd8OuKR2j05jHYvUcZe66c2pEPxFyr/MFHmMVE-/index.html#/')">
+                        <i class="fas fa-laptop"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Rise Sample 01</h3>
+                        <p>Responsive eLearning course created with Rise 360</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Rise 360</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Modern</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rise Sample 02 -->
+                <div class="portfolio-item" data-category="rise">
+                    <div class="portfolio-image" onclick="openModal('Rise Sample 02', 'https://articulateusercontent.com/review/uploads/7wWcSXVn1J04Bc0_i55PBD3wxVXrVGZe/eVaAkbYo/index.html')">
+                        <i class="fas fa-laptop"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Rise Sample 02</h3>
+                        <p>Responsive eLearning course created with Rise 360</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Rise 360</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Modern</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rise Sample 03 -->
+                <div class="portfolio-item" data-category="rise">
+                    <div class="portfolio-image" onclick="openModal('Rise Sample 03', 'https://articulateusercontent.com/review/uploads/4N3QGFv_Ux559oUCWCEkLsyFWkLXVEfX/IZrOi_Iv/index.html')">
+                        <i class="fas fa-laptop"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Rise Sample 03</h3>
+                        <p>Responsive eLearning course created with Rise 360</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Rise 360</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Modern</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Design Projects -->
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-image">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Brand Identity Design</h3>
+                        <p>Complete branding package including logo, guidelines, and marketing materials</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-image">
+                        <i class="fas fa-palette"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Marketing Collateral</h3>
+                        <p>Print and digital marketing materials for corporate clients</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">InDesign</span>
+                            <span class="tag">Print Design</span>
+                            <span class="tag">Marketing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-image">
+                        <i class="fas fa-pen-nib"></i>
+                        <div class="portfolio-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>UI/UX Design</h3>
+                        <p>User interface and experience design for eLearning platforms</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">UI Design</span>
+                            <span class="tag">UX Design</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <div class="section-title">
+            <h2>Work Experience</h2>
+            <p>My professional journey in eLearning development</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Developer Lead (E-Learning)</h3>
+                    <div class="company">Acadecraft Pvt Ltd.</div>
+                    <div class="date">Dec 2023 - Present</div>
+                    <ul>
+                        <li>Overseeing production (Design and Technical) of Storyline, Rise, and various other rapid eLearning development tools</li>
+                        <li>Visual Storyboarding: Create visual storyboards or concept sketches to plan the visual elements and overall look of the eLearning course</li>
+                        <li>Developed motion graphics using Adobe After Effects and Adobe Animate CC</li>
+                        <li>Problem Solving: Identify and address visual design challenges during course development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Visual Design Lead/Manager</h3>
+                    <div class="company">MPS Interactive Systems Limited</div>
+                    <div class="date">Sep 2022 - Nov 2023</div>
+                    <ul>
+                        <li>Managed production of Storyline, Rise, and other rapid eLearning development tools</li>
+                        <li>User Interface (UI) Design: Designed user-friendly interfaces for eLearning platforms and LMS</li>
+                        <li>Course Design Collaboration: Worked with instructional designers and SMEs to understand course content and learning objectives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Lead Integrator/Designer</h3>
+                    <div class="company">G-CUBE Solutions Pvt. Ltd.</div>
+                    <div class="date">Dec 2010 - Sep 2022</div>
+                    <ul>
+                        <li>Managing production of Storyline and Rise and other rapid eLearning development tools</li>
+                        <li>User Interface (UI) Design: Design user-friendly interfaces for eLearning platforms or Learning Management Systems (LMS)</li>
+                        <li>Course Design Collaboration: Collaborated with instructional designers and subject matter experts</li>
+                        <li>12 years of progressive growth and expertise development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="education">
+        <div class="section-title">
+            <h2>Education & Certifications</h2>
+            <p>Academic background and professional qualifications</p>
+        </div>
+        <div class="education-container">
+            <div class="education-card">
+                <i class="fas fa-university"></i>
+                <h3>B.A. Programme Degree</h3>
+                <div class="institution">Zakir Hussain College, Delhi University</div>
+                <div class="year">2010</div>
+            </div>
+
+            <div class="education-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Multimedia Diploma</h3>
+                <div class="institution">Oxford Software Institute, Pusa Road, New Delhi</div>
+                <div class="year">Professional Qualification</div>
+            </div>
+
+            <div class="education-card">
+                <i class="fas fa-school"></i>
+                <h3>12th Completed</h3>
+                <div class="institution">Anglo Arabic School, CBSE - Delhi</div>
+                <div class="year">Higher Secondary</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Let's discuss your next eLearning project</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Work Together</h3>
+                <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <a href="tel:+919910135949">+91-9910135949</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:sameer007_7@rediffmail.com">sameer007_7@rediffmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <strong>LinkedIn</strong>
+                            <a href="https://www.linkedin.com/in/sameer-mohammad-5b92b638" target="_blank">Connect on LinkedIn</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <span>H.no.: 2559, 2nd Floor, Ballimaran, Delhi, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sameer-mohammad-5b92b638" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:sameer007_7@rediffmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="tel:+919910135949" title="Phone">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+        <p>&copy; 2026 M. Sameer. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent-cyan);"></i> by M. Sameer</p>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Modal Functions
+        function openModal(title, url) {
+            const modal = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalIframe = document.getElementById('modalIframe');
+            
+            modalTitle.textContent = title;
+            modalIframe.src = url;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            const modalIframe = document.getElementById('modalIframe');
+            
+            modal.classList.remove('active');
+            modalIframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.padding = '15px 5%';
+                navbar.style.boxShadow = '0 5px 30px rgba(0, 217, 255, 0.3)';
+            } else {
+                navbar.style.padding = '20px 5%';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll to Top Button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Animate Skills on Scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const animateSkills = () => {
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = progress + '%';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateSkills);
+        window.addEventListener('load', animateSkills);
+
+        // Timeline Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const animateTimeline = () => {
+            timelineItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    item.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateTimeline);
+
+        // Portfolio Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach((item, index) => {
+                    const category = item.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = `fadeInUp 0.6s ease ${index * 0.1}s both`;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Counter Animation for Stats
+        const animateCounter = (element, target) => {
+            let count = 0;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(count) + (element.textContent.includes('+') ? '+' : '');
+                }
+            }, 16);
+        };
+
+        const statNumbers = document.querySelectorAll('.stat-card .number');
+        const animateStats = () => {
+            statNumbers.forEach(stat => {
+                const rect = stat.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const value = parseInt(stat.textContent);
+                    if (!stat.classList.contains('animated')) {
+                        stat.classList.add('animated');
+                        animateCounter(stat, value);
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateStats);
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.background = 'var(--primary-dark)';
+            navLinks.style.padding = '20px';
+            navLinks.style.boxShadow = '0 10px 30px rgba(0, 217, 255, 0.3)';
+        });
+
+        console.log('Portfolio loaded successfully! 🚀');
+    </script>
+</body>
+</html>
